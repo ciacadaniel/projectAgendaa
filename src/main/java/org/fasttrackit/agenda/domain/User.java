@@ -1,9 +1,6 @@
 package org.fasttrackit.agenda.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="usersAgenda")
@@ -13,8 +10,8 @@ public class User {
     @GeneratedValue
     private long id;
 
-
-
+    @OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+    @JoinColumn(name="usersAgenda_id")
     private String firstname;
 
     private String lastname;
