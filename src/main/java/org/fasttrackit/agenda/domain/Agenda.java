@@ -43,4 +43,8 @@ public class Agenda implements Serializable {
         sb.append('}');
         return sb.toString();
     }
+
+    public long getId() {
+        return getId();
+    }
 }

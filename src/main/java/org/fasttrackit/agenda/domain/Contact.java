@@ -13,13 +13,12 @@ public class Contact {
     private String firstName;
     private String lastName;
     private String phoneNumber;
-    private ContactCategory category;
+   // private ContactCategory category;
 
 
-
-    @OneToMany(fetch=FetchType.LAZY ,cascade=CascadeType.ALL)
-    @JoinColumn(name="contact_id")
-    private List<ContactCategory> contactcategories=new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "contact_id")
+    private List<ContactCategory> contactcategories = new ArrayList<>();
 
     public String getFirstName() {
         return firstName;
@@ -44,4 +43,14 @@ public class Contact {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+
+    public List<ContactCategory> getContactcategories() {
+        return contactcategories;
+    }
+
+    public void setContactcategories(List<ContactCategory> contactcategories) {
+        this.contactcategories = contactcategories;
+    }
+
 }
