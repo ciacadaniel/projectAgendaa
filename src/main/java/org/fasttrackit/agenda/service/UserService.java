@@ -11,7 +11,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public void saveUser(User user) throws IllegalArgumentException {
+    public void saveUser(User user)  {
         if (user.getFirstname() == null) {
             throw new IllegalArgumentException("First name cannot be null");
         }
@@ -21,7 +21,11 @@ public class UserService {
 
         }
 
-        userRepository.save(user);
+        try {
+            userRepository.save(user);
+        }catch(Exception e) {
+            System.out.println("Error when saving user " + e);
+        }
 
     }
 

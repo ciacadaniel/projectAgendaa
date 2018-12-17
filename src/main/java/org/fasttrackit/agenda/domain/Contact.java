@@ -7,18 +7,19 @@ import java.util.List;
 @Entity
 public class Contact {
     @Id
-    @GeneratedValue(generator = "agenda_generator")
-    @SequenceGenerator(name = "agenda_generator", sequenceName = "agenda_sequence", initialValue = 1)
+    @GeneratedValue(generator = "contact_generator")
+    @SequenceGenerator(name = "contact_generator", sequenceName = "contact_sequence", initialValue = 1)
     private long id;
     private String firstName;
     private String lastName;
     private String phoneNumber;
-   // private ContactCategory category;
+    private ContactCategory category;
 
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "contact_id")
-    private List<ContactCategory> contactcategories = new ArrayList<>();
+   // @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+   // @JoinColumn(name = "contact_id")
+    private List<ContactCategory> contactcategories = new ArrayList<ContactCategory>();
+
 
     public String getFirstName() {
         return firstName;
@@ -52,5 +53,4 @@ public class Contact {
     public void setContactcategories(List<ContactCategory> contactcategories) {
         this.contactcategories = contactcategories;
     }
-
 }

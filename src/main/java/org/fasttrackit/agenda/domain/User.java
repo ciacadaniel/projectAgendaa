@@ -8,11 +8,14 @@ public class User {
 
     @Id
     @GeneratedValue
-    private long id;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "usersAgenda_id")
+    private long id;
+    @Column(unique=true)
+
+  // @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    //@JoinColumn(name = "usersAgenda_id")
     private String firstname;
+
 
     private String lastname;
 

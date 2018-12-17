@@ -5,15 +5,17 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 @Entity
-@Table(name="PhoneAgenda")
+@Table(name="Agendas")
 public class Agenda implements Serializable {
     @Id
+    @Column(name="id")
     @GeneratedValue(generator="agenda_generator")
     @SequenceGenerator(
-            name="agenda-generator",
+            name="agenda_generator",
             sequenceName="agenda_sequence",
                 initialValue =1
     )
+    private long id;
     private String name;
     @OneToMany(fetch=FetchType.LAZY ,cascade=CascadeType.ALL)
     @JoinColumn(name="agenda_id")
@@ -35,6 +37,14 @@ public class Agenda implements Serializable {
         }
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Agenda{");
@@ -44,7 +54,6 @@ public class Agenda implements Serializable {
         return sb.toString();
     }
 
-    public long getId() {
-        return getId();
+
     }
-}
+

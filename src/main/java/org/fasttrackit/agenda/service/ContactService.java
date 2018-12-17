@@ -16,20 +16,12 @@ public class ContactService {
         if (contact.getFirstName() == null) {
             throw new IllegalArgumentException("Can;t  be null");
         }
-        try {
-            contactRepository.save(contact);
-        } catch (Exception e) {
-            System.out.println("Error when saving contact" + e);
-        }
+
 
         if (contact.getLastName() == null) {
             throw new IllegalArgumentException("Can;t  be null");
         }
-        try {
-            contactRepository.save(contact);
-        } catch (Exception e) {
-            System.out.println("Error when saving contact" + e);
-        }
+
 
         if (contact.getPhoneNumber() == null) {
             throw new IllegalArgumentException("Can;t  be null");
@@ -40,14 +32,11 @@ public class ContactService {
             System.out.println("Error when saving contact" + e);
         }
 
+
         if (contact.getContactcategories() == null) {
             throw new IllegalArgumentException("Can;t  be null");
         }
-        try {
-            contactRepository.save(contact);
-        } catch (Exception e) {
-            System.out.println("Error when saving agenda" + e);
-        }
+
 
     }
 

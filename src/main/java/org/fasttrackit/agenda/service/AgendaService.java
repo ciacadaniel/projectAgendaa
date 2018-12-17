@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.Id;
+import javax.transaction.Transactional;
 import java.io.Serializable;
 
 @Service
@@ -14,7 +15,8 @@ public class AgendaService {
     @Autowired
     private AgendaRepository agendaRepository;
 
-    public void saveAgenda(Agenda agenda) {
+    @Transactional
+    public  void saveAgenda(Agenda agenda) {
         if (agenda.getName() == null) {
             throw new IllegalArgumentException("Can;t  be null");
         }
