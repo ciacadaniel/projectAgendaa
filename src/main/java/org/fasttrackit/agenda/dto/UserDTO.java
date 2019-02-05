@@ -1,22 +1,9 @@
-package org.fasttrackit.agenda.domain;
+package org.fasttrackit.agenda.dto;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "usersAgenda")
-public class User {
-
-    @Id
-    @GeneratedValue
+public class UserDTO {
 
     private long id;
-    @Column(unique=true)
-
-  // @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    //@JoinColumn(name = "usersAgenda_id")
     private String firstName;
-
-
     private String lastName;
 
     public long getId() {

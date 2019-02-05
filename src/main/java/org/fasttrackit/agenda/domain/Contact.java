@@ -6,6 +6,14 @@ import java.util.List;
 
 @Entity
 public class Contact {
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     @Id
     @GeneratedValue(generator = "contact_generator")
     @SequenceGenerator(name = "contact_generator", sequenceName = "contact_sequence", initialValue = 1)
@@ -13,12 +21,12 @@ public class Contact {
     private String firstName;
     private String lastName;
     private String phoneNumber;
-    private ContactCategory category;
+   // private ContactCategory category;
 
 
    // @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
    // @JoinColumn(name = "contact_id")
-    private List<ContactCategory> contactcategories = new ArrayList<ContactCategory>();
+    //private List<ContactCategory> contactcategories = new ArrayList<ContactCategory>();
 
 
     public String getFirstName() {
@@ -46,11 +54,11 @@ public class Contact {
     }
 
 
-    public List<ContactCategory> getContactcategories() {
-        return contactcategories;
-    }
-
-    public void setContactcategories(List<ContactCategory> contactcategories) {
-        this.contactcategories = contactcategories;
-    }
+  //  public List<ContactCategory> getContactcategories() {
+//        return contactcategories;
+//    }
+//
+//    public void setContactcategories(List<ContactCategory> contactcategories) {
+//        this.contactcategories = contactcategories;
+//    }
 }

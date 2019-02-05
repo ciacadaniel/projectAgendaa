@@ -1,7 +1,7 @@
 package org.fasttrackit.agenda.service;
 
 import org.fasttrackit.agenda.domain.User;
-import org.fasttrackit.agenda.persistence.UserRepository;
+import org.fasttrackit.agenda.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +12,11 @@ public class UserService {
     private UserRepository userRepository;
 
     public void saveUser(User user)  {
-        if (user.getFirstname() == null) {
+        if (user.getFirstName() == null) {
             throw new IllegalArgumentException("First name cannot be null");
         }
 
-        if (user.getLastname() == null) {
+        if (user.getLastName() == null) {
             throw new IllegalArgumentException("First name cannot be null");
 
         }

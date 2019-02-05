@@ -2,9 +2,11 @@ package org.fasttrackit.agenda.service;
 
 
 import org.fasttrackit.agenda.domain.Contact;
-import org.fasttrackit.agenda.persistence.ContactRepository;
+import org.fasttrackit.agenda.dto.ContactDTO;
+import org.fasttrackit.agenda.repo.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ContactService {
@@ -32,13 +34,22 @@ public class ContactService {
             System.out.println("Error when saving contact" + e);
         }
 
+    }
 
-        if (contact.getContactcategories() == null) {
-            throw new IllegalArgumentException("Can;t  be null");
+    @Transactional
+    public void update(ContactDTO contact) {
+        Contact updated = contactRepository.findOne(contact.getId());
+        if (updated == null) {
+            throw new IllegalArgumentException("Invalid id");
+
         }
-
+        updated.setPhoneNumber(contact.getPhoneNumber());
+        updated.setLastName(contact.getLastName());
+        updated.setFirstName(contact.getFirstName());
+        contactRepository.save(updated);
 
     }
+
 
     }
 

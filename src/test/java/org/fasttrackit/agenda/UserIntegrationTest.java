@@ -22,8 +22,8 @@ public class UserIntegrationTest {
     @Test
     public void testSave() {
         User user=new User();
-        user.setFirstname("Ciaca");
-        user.setLastname("Daniel");
+        user.setFirstName("Ciaca");
+        user.setLastName("zet");
         userService.saveUser(user);
     }
 

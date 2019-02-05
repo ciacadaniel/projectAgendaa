@@ -1,4 +1,4 @@
-package org.fasttrackit.agenda.persistence;
+package org.fasttrackit.agenda.repo;
 
 import org.fasttrackit.agenda.domain.Contact;
 import org.springframework.data.repository.PagingAndSortingRepository;

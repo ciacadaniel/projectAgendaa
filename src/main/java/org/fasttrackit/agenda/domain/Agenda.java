@@ -17,6 +17,11 @@ public class Agenda implements Serializable {
     )
     private long id;
     private String name;
+
+    public List<Contact> getContactList() {
+        return contactList;
+    }
+
     @OneToMany(fetch=FetchType.LAZY ,cascade=CascadeType.ALL)
     @JoinColumn(name="agenda_id")
     private List<Contact> contactList=new ArrayList<>();

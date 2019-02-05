@@ -2,13 +2,14 @@ package org.fasttrackit.agenda.service;
 
 import org.fasttrackit.agenda.domain.Agenda;
 import org.fasttrackit.agenda.dto.AgendaDTO;
-import org.fasttrackit.agenda.persistence.AgendaRepository;
+import org.fasttrackit.agenda.repo.AgendaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.Id;
 import javax.transaction.Transactional;
-import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 @Service
 public class AgendaService {
@@ -27,39 +28,26 @@ public class AgendaService {
         }
 
     }
-
-    public Iterable<Agenda> getShops() {
-      return  agendaRepository.findAll();
-    }
-
-    public AgendaDTO getAgendaById(long id) {
-       Agenda agenda= (Agenda) agendaRepository.findOne(id);
-       if(agenda==null ) {
-           throw new IllegalArgumentException("The id is not valid");
-       }
-       return convertToDto(agenda);
-
-    }
-
-    private AgendaDTO convertToDto(Agenda agenda) {
-        AgendaDTO agendaDTO = new AgendaDTO();
-        agendaDTO.setName(agenda.getName());
-        agendaDTO.setId(agenda.getId()); //aici trebe sa fac setid si alea
-        return agendaDTO;
+    @Transactional
+    public List<AgendaDTO> getAllAgendas() {
+        List<AgendaDTO> result = new ArrayList<>();
+        Iterator<Agenda> iterator = agendaRepository.findAll().iterator();
+        while (iterator.hasNext()) {
+            Agenda next = iterator.next();
+            result.add(ConvertorUtils.convertToDto(next));
         }
-
-    private Agenda convert(AgendaDTO agendaDTO) {
-        Agenda agenda = new Agenda();
-        agendaDTO.setName(agendaDTO.getName());
-        agendaDTO.setId(agendaDTO.getId()); //aici trebe sa fac setid si alea
-        return agenda;
+        return result;
     }
 
-    public AgendaDTO updateAgenda(long id,AgendaDTO dto) {
-
-      Agenda agenda= (Agenda) agendaRepository.findOne(id);
-      agenda.setName(dto.getName());
-      Agenda savedAgenda = (Agenda) agendaRepository.save(agenda);
-      return convertToDto(savedAgenda);
+    @Transactional
+    public AgendaDTO getAgenda(long id) {
+        Agenda one = agendaRepository.findOne(id);
+        if (one == null) {
+            throw new IllegalArgumentException("Invalid id");
+        }
+        AgendaDTO dto = ConvertorUtils.convertToDto(one);
+        return dto;
     }
+
+
 }
